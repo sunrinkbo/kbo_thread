@@ -1,3 +1,7 @@
+from datetime import datetime, timezone
+import time
+
+import pytz
 from django.shortcuts import render
 from .models import Article, Comment
 from .serializers import ArticleSerializer, CommentSerializer
@@ -9,7 +13,7 @@ class ArticleView(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
 
     def perform_create(self, serializer):
-        serializer.save(ip=get_client_ip(self.request))
+        serializer.save(ip=get_client_ip(self.request), time=get_current_kst())
 
 
 class CommentView(viewsets.ModelViewSet):
@@ -17,7 +21,18 @@ class CommentView(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
 
     def perform_create(self, serializer):
-        serializer.save(article=self.request.article, ip=get_client_ip(self.request))
+        serializer.save(ip=get_client_ip(self.request), time=get_current_kst())
+
+    def get_queryset(self):
+        article = self.request.query_params.get('article')
+        queryset = Comment.objects.filter(article=article)
+        return queryset if article else Comment.objects.all()
+
+
+def get_current_kst():
+    tz = pytz.timezone('Asia/Seoul')
+    seoul_now = datetime.now(tz)
+    return seoul_now
 
 
 def get_client_ip(request):
