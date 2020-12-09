@@ -30,7 +30,7 @@ function ThreadForm({mode, article}) {
                     name: "익명"
                 });
 
-                queryCache.refetchQueries(['thread_list']).then(() => console.log("Thread Refreshed"));
+                queryCache.refetchQueries(mode === "comment" ? ["comments", article]: ['thread_list']).then(() => console.log("Thread Refreshed"));
             })
             .catch(() => {
                 alert("오류가 발생했습니다. 다시 시도해주세요.");
@@ -50,6 +50,7 @@ function ThreadForm({mode, article}) {
 const Form = styled.form`
   & > .text {
     width: 100%;
+    box-sizing: border-box;
     padding: 1em;
   }
   & > .text:focus {

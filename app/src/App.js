@@ -22,8 +22,10 @@ function App() {
         안녕하세요!<br/>
         {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 {(["일", "월", "화", "수", "목", "금", "토"])[date.getDay()]}요일
       </h1>
-        <ThreadForm />
-      <ThreadList />
+        <div style={{marginTop: '1em'}}>
+            <ThreadForm />
+            <ThreadList />
+        </div>
     </Wrap>
   );
 }

@@ -11,7 +11,7 @@ function ThreadCommentList({article}) {
     }
 
     return (
-        <div style={{background: 'white', padding: '2em', maxWidth: '60vh', overflowY: 'scroll'}}>
+        <div style={{ maxHeight: '60vh', width: "80vw", maxWidth: 640, overflowY: 'scroll'}}>
             {query.data.data.map(data => <ThreadComment key={data.id} {...data} />)}
             {query.data.data.length < 1 && <h1>댓글이 없습니다.</h1>}
         </div>

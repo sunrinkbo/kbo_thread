@@ -2,9 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import {useModal} from "./Modal";
 import ThreadCommentList from "./ThreadCommentList";
+import ThreadForm from "./ThreadForm";
 
 function Thread({by, contents, ip, date, id}) {
-    const commentModal = useModal(<ThreadCommentList article={id}/>)
+    const commentModal = useModal((
+        <div style={{padding: '2em', background: 'white'}}>
+            <ThreadForm mode="comment" article={id} />
+            <ThreadCommentList article={id} />
+        </div>
+    ))
     return (
         <Wrap>
             <div className="content" dangerouslySetInnerHTML={{__html: contents}}/>
