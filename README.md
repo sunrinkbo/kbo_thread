@@ -14,3 +14,7 @@ And if you want to save the list of packages, Try this:
 $ pip freeze > requirements.txt
 ```
 
+if you want to see the views, you have to build front-end project. This action is required Node.js.
+```
+ $ cd app && npm install && npm run build
+```
