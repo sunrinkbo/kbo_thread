@@ -7,10 +7,19 @@ from .models import Article, Comment
 from .serializers import ArticleSerializer, CommentSerializer
 from rest_framework import viewsets
 
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+
+
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+
+    def enforce_csrf(self, request):
+        return  # To not perform the csrf check previously happening
+
 
 class ArticleView(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def perform_create(self, serializer):
         serializer.save(ip=get_client_ip(self.request), time=get_current_kst())
@@ -19,6 +28,7 @@ class ArticleView(viewsets.ModelViewSet):
 class CommentView(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def perform_create(self, serializer):
         serializer.save(ip=get_client_ip(self.request), time=get_current_kst())
