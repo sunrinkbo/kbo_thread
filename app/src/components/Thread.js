@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useModal} from "./Modal";
+import ThreadCommentList from "./ThreadCommentList";
 
-function Thread({title, contents, ip, date}) {
+function Thread({by, contents, ip, date, id}) {
+    const commentModal = useModal(<ThreadCommentList article={id}/>)
     return (
         <Wrap>
-            <h3 className="title">{title}</h3>
-            <p className="information">
-                {date.toString()} / {ip}
-            </p>
-            <hr />
             <div className="content" dangerouslySetInnerHTML={{__html: contents}}/>
-            <button>대충 댓글 버튼</button>
+            <hr />
+            <p className="information">
+                {date.toString()} / {by} ({ip.split(".").slice(0,2).join(".") + ".*.*"})
+            </p>
+            {commentModal.element}
+            <button className="comment-btn" onClick={() => commentModal.setOpen(true)}>댓글</button>
         </Wrap>
     )
 }
@@ -28,6 +31,18 @@ const Wrap = styled.div`
   }
   & > .information {
     color: #555;
+    margin: 0;
+    font-size: .75em;
+  }
+  
+  .comment-btn {
+    appearance: none;
+    border: 0;
+    background: #d4d6ff;
+    font-size: 1rem;
+    padding: .5em 1em;
+    border-radius: 1em;
+    margin-top: 1em;
   }
 `;
 

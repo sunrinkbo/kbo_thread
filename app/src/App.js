@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import viewport from "./constants/viewport";
-import Thread from "./components/Thread";
+import ThreadList from "./components/ThreadList";
 
 function App() {
   const [date, setDate] = useState(new Date());
@@ -22,7 +22,7 @@ function App() {
         {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 {(["일", "월", "화", "수", "목", "금", "토"])[date.getDay()]}요일
       </h1>
         <textarea>대충 글 쓰는곳</textarea>
-      <Thread title="title" contents="contents" date={new Date()} ip="192.168.*.*" />
+      <ThreadList />
     </Wrap>
   );
 }
