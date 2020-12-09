@@ -13,7 +13,7 @@ function Thread({by, contents, ip, date, id}) {
                 {date.toString()} / {by} ({ip.split(".").slice(0,2).join(".") + ".*.*"})
             </p>
             {commentModal.element}
-            <button className="comment-btn" onClick={() => commentModal.setOpen(true)}>댓글</button>
+            <button className="comment-btn button-style" onClick={() => commentModal.setOpen(true)}>댓글</button>
         </Wrap>
     )
 }
@@ -36,12 +36,7 @@ const Wrap = styled.div`
   }
   
   .comment-btn {
-    appearance: none;
-    border: 0;
-    background: #d4d6ff;
-    font-size: 1rem;
-    padding: .5em 1em;
-    border-radius: 1em;
+    
     margin-top: 1em;
   }
 `;

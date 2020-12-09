@@ -12,7 +12,7 @@ function ThreadList() {
 
     return (
         <div style={{}}>
-            {list.data.data.map(data => (
+            {list.data.data.sort((a,b) => new Date(b.time).getTime() - new Date(a.time).getTime()).map(data => (
                 <Thread key={data.id} id={data.id} by={data.name} ip={data.ip} date={new Date(data.time)} contents={data.text} />
             ))}
         </div>

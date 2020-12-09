@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import viewport from "./constants/viewport";
 import ThreadList from "./components/ThreadList";
+import ThreadForm from "./components/ThreadForm";
 
 function App() {
   const [date, setDate] = useState(new Date());
@@ -21,7 +22,7 @@ function App() {
         안녕하세요!<br/>
         {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일 {(["일", "월", "화", "수", "목", "금", "토"])[date.getDay()]}요일
       </h1>
-        <textarea>대충 글 쓰는곳</textarea>
+        <ThreadForm />
       <ThreadList />
     </Wrap>
   );

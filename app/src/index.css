@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.box-style {
+  border: 1px solid #eee;
+  border-radius: 7px;
+  background: #eee;
+  box-shadow: -3px 5px 5px #eee;
+}
+
+.button-style {
+  appearance: none;
+  border: 0;
+  background: #d4d6ff;
+  font-size: 1rem;
+  padding: .5em 1em;
+  border-radius: 7px;
+}
+
+input, textarea:focus {
+  outline: 0;
+}
